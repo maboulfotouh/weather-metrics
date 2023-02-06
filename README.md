@@ -46,7 +46,9 @@ CLI application that allows searching for locations, pulling it's cordinates fro
   And `WG_ACCESS_TOKEN` from whatagraph.com
 
 - Generate `APP_KEY`
-  ``` php artisan key:generate```
+  ``` 
+  php artisan key:generate
+  ```
 - Cache the new variables
   ``` 
   php artisan config:cache

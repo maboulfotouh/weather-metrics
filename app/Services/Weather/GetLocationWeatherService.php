@@ -1,5 +1,5 @@
 <?php
-namespace App\Services\OneCall;
+namespace App\Services\Weather;
 
 use App\Adapters\Weather\Contracts\WeatherAdapterInterface;
 use App\Data\LocationWeatherData;

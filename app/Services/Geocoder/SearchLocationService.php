@@ -4,7 +4,7 @@ namespace App\Services\Geocoder;
 use App\Adapters\Geocoding\Contracts\GeocodingAdapterInterface;
 use Spatie\LaravelData\DataCollection;
 
-class SearchForLocationService
+class SearchLocationService
 {
     private GeocodingAdapterInterface $geocodingAdapter;
 

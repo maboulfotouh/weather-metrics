@@ -2,8 +2,8 @@
 namespace App\Console\Commands;
 
 use App\Exceptions\WGException;
-use App\Services\OneCall\GetLocationWeatherService;
-use App\Services\Geocoder\SearchForLocationService;
+use App\Services\Weather\GetLocationWeatherService;
+use App\Services\Geocoder\SearchLocationService;
 use App\Services\Whatagraph\CreateLocationSourceDataService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
@@ -25,7 +25,7 @@ class WeatherPushToWhatagraph extends Command
      */
     protected $description = 'The command will pull the submitted locations from openweathermap and push it back to whatagraph';
 
-    private SearchForLocationService $searchForLocationService;
+    private SearchLocationService $searchLocationService;
 
     private GetLocationWeatherService $getLocationWeatherService;
 
@@ -40,18 +40,18 @@ class WeatherPushToWhatagraph extends Command
     /**
      * Execute the console command.
      *
-     * @param SearchForLocationService $searchForLocationService
+     * @param SearchLocationService $searchLocationService
      * @param GetLocationWeatherService $getLocationWeatherService
      * @param CreateLocationSourceDataService $createLocationSourceDataService
      * @return int
      * @throws WGException
      */
     public function handle(
-        SearchForLocationService $searchForLocationService,
+        SearchLocationService $searchLocationService,
         GetLocationWeatherService $getLocationWeatherService,
         CreateLocationSourceDataService $createLocationSourceDataService
     ): int {
-        $this->searchForLocationService = $searchForLocationService;
+        $this->searchLocationService = $searchLocationService;
         $this->getLocationWeatherService = $getLocationWeatherService;
         $this->createLocationSourceDataService = $createLocationSourceDataService;
 
@@ -68,7 +68,7 @@ class WeatherPushToWhatagraph extends Command
     private function getLocationSearchResults(): void
     {
         $locationName = $this->ask('Please enter the location name');
-        $this->temporaryStoredLocations = $this->searchForLocationService->execute($locationName);
+        $this->temporaryStoredLocations = $this->searchLocationService->execute($locationName);
         if ($this->temporaryStoredLocations->count() == 0) {
             $this->info('No results found!');
             $this->initCycle();

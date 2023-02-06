@@ -27,7 +27,7 @@ final class WGClient
      */
     public function fire(string $endpoint, string $method, array $payload): Response
     {
-        $http = Http::withHeaders($this->headers());
+        $http = Http::withHeaders($this->headers())->throw();
         $url = $this->baseURL . $endpoint;
 
         try {

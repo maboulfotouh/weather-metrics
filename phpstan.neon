@@ -1,0 +1,17 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+
+    paths:
+        - app
+
+    # The level 8 is the highest level
+    # levels docs: https://phpstan.org/user-guide/rule-levels
+    level: 6
+    excludePaths:
+        - ./vendor
+        - ./database/migrations
+
+    checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false

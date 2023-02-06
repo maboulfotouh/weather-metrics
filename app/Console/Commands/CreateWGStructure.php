@@ -2,7 +2,7 @@
 namespace App\Console\Commands;
 
 use App\Exceptions\WGException;
-use App\Services\Whatagraph\{CreateDimensionService, CreateMetricService};
+use App\Services\Whatagraph\{CreateDimensionService, CreateMetricService, ListMetricsService};
 use Illuminate\Console\Command;
 
 class CreateWGStructure extends Command
@@ -26,17 +26,28 @@ class CreateWGStructure extends Command
      *
      * @param CreateMetricService $createMetricService
      * @param CreateDimensionService $createDimensionService
+     * @param ListMetricsService $listMetricsService
      * @return int
      * @throws WGException
      */
     public function handle(
         CreateMetricService $createMetricService,
-        CreateDimensionService $createDimensionService
+        CreateDimensionService $createDimensionService,
+        ListMetricsService $listMetricsService
     ): int {
         $metrics = config('whatagraph.metrics');
         $dimensions = config('whatagraph.dimensions');
+        $WGMetrics = $listMetricsService->execute();
+        $existingMetrics = [];
+
+        if (isset($WGMetrics['data'])) {
+            $existingMetrics = array_column($WGMetrics['data'], 'external_id');
+        }
 
         foreach ($metrics as $metric) {
+            if (in_array($metric['external_id'], $existingMetrics)) {
+                continue;
+            }
             $createMetricService->execute($metric['name'], $metric['external_id'], $metric['type']);
         }
 

@@ -1,7 +1,10 @@
 <?php
-
 namespace App\Providers;
 
+use App\Adapters\Geocoding\Contracts\GeocodingAdapterInterface;
+use App\Adapters\Geocoding\OpenWeatherGeocodingAdapter;
+use App\Adapters\Weather\Contracts\WeatherAdapterInterface;
+use App\Adapters\Weather\OneCallAdapter;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +16,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(GeocodingAdapterInterface::class, OpenWeatherGeocodingAdapter::class);
+        $this->app->singleton(WeatherAdapterInterface::class, OneCallAdapter::class);
     }
 
     /**
@@ -23,6 +27,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        
     }
 }

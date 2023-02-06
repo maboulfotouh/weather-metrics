@@ -21,13 +21,22 @@ CLI application that allows searching for locations, pulling it's cordinates fro
 ## Installtion
 
 - Clone the repo
-  ``` git clone https://github.com/maboulfotouh/weather-metrics.git ```
+  
+  ``` 
+  git clone https://github.com/maboulfotouh/weather-metrics.git 
+  ```
 - Move to repo's directory
-  ``` cd weather-metrics ```
+  ``` 
+  cd weather-metrics 
+  ```
 - Install depdenceies
-  ``` composer install ```
+  ``` 
+  composer install 
+  ```
 - Copy .env.example to .env file
-  ``` cp .env.example .env ```
+  ``` 
+  cp .env.example .env 
+  ```
 - Add the following variables to your `.env` file
   ```
   OPENWEATHER_API_KEY
@@ -39,11 +48,17 @@ CLI application that allows searching for locations, pulling it's cordinates fro
 - Generate `APP_KEY`
   ``` php artisan key:generate```
 - Cache the new variables
-  ``` php artisan config:cache ```
+  ``` 
+  php artisan config:cache
+   ```
 - Create Whatagraph mertics and diemnsion
-  ``` php artisan WG:create-structure ```
+  ``` 
+  php artisan WG:create-structure
+   ```
 - Start using the CLI!
-  ``` php artisan weather:pull-and-push-to-whatagraph ```
+  ``` 
+  php artisan weather:pull-and-push-to-whatagraph
+   ```
 
 ## How it works
 
@@ -58,12 +73,16 @@ Before using the application we must create the required metrics and dimensions 
 
 The required metrics and dimensions are declared in `whatagraph.php` config file,
 And the following command is responsible for creating them if they're not created.
-``` php artisan WG:create-structure ```
+``` 
+php artisan WG:create-structure
+ ```
 
 <hr>
 
 The application can be used through the CLI by using the following command
-``` php artisan weather:pull-and-push-to-whatagraph ```
+``` 
+php artisan weather:pull-and-push-to-whatagraph
+ ```
 
 Here's an example of CLI
 

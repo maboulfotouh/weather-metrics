@@ -2,8 +2,8 @@
 namespace App\Console\Commands;
 
 use App\Exceptions\WGException;
-use App\Services\Weather\GetLocationWeatherService;
 use App\Services\Geocoder\SearchLocationService;
+use App\Services\Weather\GetLocationWeatherService;
 use App\Services\Whatagraph\CreateLocationSourceDataService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
@@ -65,6 +65,9 @@ class WeatherPushToWhatagraph extends Command
     }
 
 
+    /**
+     * @throws WGException
+     */
     private function getLocationSearchResults(): void
     {
         $locationName = $this->ask('Please enter the location name');
@@ -76,6 +79,9 @@ class WeatherPushToWhatagraph extends Command
         $this->storeChosenSearchResult();
     }
 
+    /**
+     * @throws WGException
+     */
     private function storeChosenSearchResult(): void
     {
         $choices = [];

@@ -1,5 +1,5 @@
 <?php
-namespace App\Services\Geocoder;
+namespace App\Services\OneCall;
 
 use App\Adapters\Weather\Contracts\WeatherAdapterInterface;
 use App\Data\LocationWeatherData;

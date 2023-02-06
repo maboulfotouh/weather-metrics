@@ -2,8 +2,8 @@
 namespace App\Console\Commands;
 
 use App\Exceptions\WGException;
-use App\Services\Geocoder\GetLocationWeatherService;
-use App\Services\OneCall\SearchForLocationService;
+use App\Services\OneCall\GetLocationWeatherService;
+use App\Services\Geocoder\SearchForLocationService;
 use App\Services\Whatagraph\CreateLocationSourceDataService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;

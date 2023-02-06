@@ -1,5 +1,5 @@
 <?php
-namespace App\Services\OneCall;
+namespace App\Services\Geocoder;
 
 use App\Adapters\Geocoding\Contracts\GeocodingAdapterInterface;
 use Spatie\LaravelData\DataCollection;
